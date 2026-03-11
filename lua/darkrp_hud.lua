@@ -13,7 +13,12 @@ local iconId     = Material("darkrp_hud/id.png",     "noclamp smooth")
 local iconMoney  = Material("darkrp_hud/money.png",  "noclamp smooth")
 local iconJob    = Material("darkrp_hud/job.png",    "noclamp smooth")
 
-local elementsToHide = {"DarkRP_HUD"}
+local elementsToHide = {
+    "DarkRP_HUD",
+    "CHudHealth",
+    "CHudBattery",
+    "DarkRP_Hungermod",
+}
 
 hook.Add("HUDShouldDraw", "DarkRPHUD", function(name)
     for _, element in pairs(elementsToHide) do
@@ -48,10 +53,10 @@ hook.Add("HUDPaint", "HUD", function()
 
     local Health = LocalPlayer():Health()
     local Armor  = LocalPlayer():Armor()
-    local Hunger = LocalPlayer():getDarkRPVar("hunger") or 0
+    local Hunger = LocalPlayer():getDarkRPVar("Energy") or 0
     local Name   = LocalPlayer():Nick()
     local Job    = LocalPlayer():getDarkRPVar("job") or ""
-    local Money  = LocalPlayer():getDarkRPVar("money") or 0
+    local Money  = LocalPlayer():getDarkRPVar("money")
 
     currentHealth = Lerp(FrameTime() * 5, currentHealth, Health)
     currentArmor  = Lerp(FrameTime() * 5, currentArmor,  Armor)
